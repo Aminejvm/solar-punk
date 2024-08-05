@@ -18,12 +18,17 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(180deg, #EDECF0 0%, #F6E9DE 100%);
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,body {
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
@@ -31,3 +36,11 @@ body {
     text-wrap: balance;
   }
 }
+
+*:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+
+
