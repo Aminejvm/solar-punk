@@ -52,21 +52,23 @@ export default function AnswerPage({ params }: { params: { pid: string } }) {
       >
         {selectedQuestion.answer}
       </pre>
-      <div className="mt-2 border-t border-neutral-100 border-dotted py-3">
-        <h2 className="text-xs text-black">Based on:</h2>
-        <div className="flex gap-2 flex-wrap mt-2">
-          {selectedQuestion.basedOn?.map((item, index) => (
-            <a
-              className="text-black text-xs rounded-md bg-orange-50 px-2 py-1"
-              href={item.source_id}
-              key={item.source_id + index}
-              target="_blank"
-            >
-              {item.title}
-            </a>
-          ))}
+      {selectedQuestion.basedOn && (
+        <div className="mt-2 border-t border-neutral-100 border-dotted py-3">
+          <h2 className="text-xs text-black">Based on:</h2>
+          <div className="flex gap-2 flex-wrap mt-2">
+            {selectedQuestion.basedOn?.map((item, index) => (
+              <a
+                className="text-black text-xs rounded-md bg-orange-50 px-2 py-1"
+                href={item.source_id}
+                key={item.source_id + index}
+                target="_blank"
+              >
+                {item.title}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}{" "}
     </article>
   );
 }

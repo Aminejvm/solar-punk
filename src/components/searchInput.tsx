@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next-nprogress-bar";
 import { Inter } from "next/font/google";
-import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useEscapeKey } from "~/common/hooks";
 import { cn } from "~/common/tailwind";
@@ -127,17 +127,16 @@ function SearchMenuGenerateStreamAnswer({ query }: { query: string }) {
 
             lines.forEach((line) => {
               if (line.startsWith("data: {")) {
-                const jsonStr = line.slice(6); // Remove 'data: ' prefix
+                //NOTE(amine): Remove 'data: ' prefix
+                const jsonStr = line.slice(6);
                 try {
                   const jsonObj = JSON.parse(jsonStr);
 
                   if (isMetadata) {
                     metadataBuffer += jsonStr;
                     if (jsonStr.endsWith("}")) {
-                      // Metadata object is complete
+                      // TODO(amine): handle metadata processing
                       isMetadata = false;
-                      metadata = JSON.parse(metadataBuffer);
-                      setMetadata(metadata);
                       metadataBuffer = "";
                     }
                   } else if ("content" in jsonObj) {
@@ -197,21 +196,6 @@ function SearchMenuGenerateStreamAnswer({ query }: { query: string }) {
               </span>
             ))}
           </pre>
-          <div className="px-4 mt-2 border-t border-neutral-100 border-dotted py-3">
-            <h2 className="text-xs text-black">Based on:</h2>
-            <div className="flex gap-2 flex-wrap mt-2">
-              {metadata?.based_on?.map((item, index) => (
-                <a
-                  className="text-black text-xs rounded-md bg-orange-50 px-2 py-1"
-                  href={item.source_id}
-                  key={item.source_id + index}
-                  target="_blank"
-                >
-                  {item.title}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       )}
     </>
