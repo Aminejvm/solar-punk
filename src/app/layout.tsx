@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "~/components/Header";
 import { Container } from "~/components/primitives/container";
+import { ProgressBar } from "~/components/primitives/ProgressBar";
 import { ReduxProvider } from "~/store/provider";
 import "./globals.css";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
             <Header />
             {children}
           </Container>
+          <ProgressBar />
         </body>
       </ReduxProvider>
     </html>
