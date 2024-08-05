@@ -264,7 +264,7 @@ const ComboboxInput = React.forwardRef<HTMLElement, ComboboxInputProps>(
         keyDownHandler,
         onKeyDown,
       ),
-      ref: mergeRefs([ref, children.props.ref, registerInputRef]),
+      ref: mergeRefs([ref, (children as any).ref, registerInputRef]),
       ...props,
     });
   },
@@ -352,7 +352,7 @@ const ComboboxMenu = React.forwardRef<HTMLElement, ComboboxMenuProps>(
 
     React.useLayoutEffect(() => cleanupMenu, []);
     return React.cloneElement(React.Children.only(children), {
-      ref: mergeRefs([ref, children.props.ref, registerMenuRef]),
+      ref: mergeRefs([ref, (children as any).ref, registerMenuRef]),
       style: { position: "relative", ...children.props.style },
       ...props,
     });
